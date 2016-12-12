@@ -1,17 +1,49 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1.0,maximum-scale=1.0" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<link rel="stylesheet" href="index.css" type="text/css" media="screen,mobile" title="main" charset="utf-8" />
-<link rel="apple-touch-icon" href="images/app.png" />
-<title>Grocery Tracker</title>
+    <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet" href="assets/styles/index.css" type="text/css" media="screen,mobile" title="main" charset="utf-8"
+    />
+    <link rel="apple-touch-icon" href="images/app.png" />
+    <script src="bower_components/localStorageDB/localstoragedb.js"></script>
+    <script src="assets/scripts/app.js"></script>
+    <title>Grocery Tracker</title>
 </head>
+
 <body>
-<div id='main'>
-</div>
-<div id='footer'>
-</div>
+    <h1>Grocery Tracker</h1>
+    <div id='main'>
+        <h2>New Entry</h2>
+        <form>
+            Item<br>
+            <input type="text" id="item"><br>
+            Number<br>
+            <input type="text" id="number"><br>
+            Price<br>
+            <input type="text" id="price"><br>
+            Store<br>
+            <input type="text" id="location"><br>
+            Date<br>
+            <input type="date" id="date"><br>
+            <input type="button" id="send" value="Submit" onclick="update_screen()">
+        </form>
+    </div>
+    <h2>Groceries</h2>
+    <div id='list'>
+        
+    </div>
+    <div id='footer'>
+        <table>
+            <tr>
+                <td>v0.0.0 revision 2</td>
+                <td>Romulus10</td>
+                <td>12/12/2016</td>
+            </tr>
+        </table>
+    </div>
 </body>
+
 </html>

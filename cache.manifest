@@ -1,3 +1,4 @@
 CACHE MANIFEST
 index.html
-index.css
+assets/styles/index.css
+assets/scripts/app.js
