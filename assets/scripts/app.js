@@ -23,7 +23,7 @@ onload = function () {
 }
 
 new_block = function (item_v, number_v, price_v, location_v, date_v) {
-    var unit_price = price_v/number_v;
+    var unit_price = price_v / number_v;
     lib.insert("groceries", {
         item: item_v,
         price: unit_price,
@@ -79,7 +79,7 @@ compare = function (name_v) {
     var loc = "";
     var whe = "";
     for (var i = 0; i < results.length; i++) {
-        if (results[i].price < min){
+        if (results[i].price < min) {
             min = results[i].price;
             loc = results[i].location;
             whe = results[i].date;
