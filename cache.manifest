@@ -2,3 +2,4 @@ CACHE MANIFEST
 index.html
 assets/styles/index.css
 assets/scripts/app.js
+bower_components/localStorageDB/localstoragedb.js

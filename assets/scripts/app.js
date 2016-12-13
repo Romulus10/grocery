@@ -23,7 +23,7 @@ onload = function () {
 }
 
 new_block = function (item_v, number_v, price_v, location_v, date_v) {
-    var unit_price = price_v / number_v;
+    var unit_price = Math.round(((price_v / number_v) * 100)) / 100;
     lib.insert("groceries", {
         item: item_v,
         price: unit_price,
@@ -65,7 +65,9 @@ get_form = function () {
     var date = form_m.elements[4].value
     var return_val = Array(item, number, price, location, date);
     console.log(return_val);
-    form_m.submit();
+    for (var x = 0; x < 5; x++) {
+        form_m.elements[x].value = "";
+    }
     return return_val;
 }
 
