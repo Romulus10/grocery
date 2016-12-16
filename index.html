@@ -21,7 +21,13 @@
             Item<br>
             <input type="text" id="item"><br>
             Number<br>
-            <input type="text" id="number"><br>
+            <input type="text" id="number">
+            <select>
+              <option value="ct">ct</option>
+              <option value="lbs">lbs</option>
+              <option value="oz">oz</option>
+            </select>
+            <br>
             Price<br>
             <input type="text" id="price"><br>
             Store<br>
@@ -30,15 +36,22 @@
             <input type="date" id="date"><br>
             <input type="button" id="send" value="Submit" onclick="update_screen()">
         </form>
+        <br>
+        <div id='total'>
+          <div id='display'>
+            $0.00
+          </div>
+          <button onclick='clear_total()'>Clear</button>
+        </div>
     </div>
     <h2>Groceries</h2>
     <div id='list'>
-        
+
     </div>
     <div id='footer'>
         <table>
             <tr>
-                <td>v0.0.0 revision 3</td>
+                <td>v0.2.0 revision 1</td>
                 <td>Romulus10</td>
                 <td>12/13/2016</td>
             </tr>
