@@ -25,8 +25,8 @@ onload = function () {
         lib.commit();
     }
     check_database();
-    check_items();
-    check_locations();
+    check_item();
+    check_location();
 }
 
 new_block = function (item_v, number_v, price_v, unit_v, location_v, date_v) {
