@@ -57,7 +57,7 @@ check_database = function () {
     document.getElementById("list").innerHTML = string;
 }
 
-check_items = function() {
+check_item = function() {
   var full = lib.queryAll("items");
   console.log(full);
   var len = full.length;
@@ -72,7 +72,7 @@ check_items = function() {
   document.getElementById("item").innerHTML = string;
 }
 
-check_locations = function() {
+check_location = function() {
   var full = lib.queryAll("locations");
   console.log(full);
   var len = full.length;
@@ -92,6 +92,8 @@ update_screen = function () {
     form_contents = get_form();
     new_block(form_contents[0], form_contents[1], form_contents[2], form_contents[3], form_contents[4], form_contents[5]);
     check_database();
+    check_item();
+    check_location();
 }
 
 get_form = function () {
