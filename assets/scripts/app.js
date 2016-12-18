@@ -46,11 +46,11 @@ check_database = function () {
     var full = lib.queryAll("groceries");
     console.log(full);
     var len = full.length;
-    var string = "<table><tr><th>Item</th><th>Unit Price</th><th>Location</th><th>Date</th></tr>"
+    var string = "<table><tr><th>Compare</th><th>Item</th><th>Unit Price</th><th>Location</th><th>Date</th></tr>"
     console.log("Number of database indices- " + len);
     for (var i = 0; i < len; i++) {
         console.log(full[i]);
-        string += ("<tr><th><button onclick='compare('{0}')'>Compare</button></th><th>{0}</th><th>${1}/{4}</th><th>{2}</th><th>{3}</th></tr>").supplant([full[i].item, full[i].price, full[i].location, full[i].date, full[i].unit]);
+        string += ("<tr><th><button onclick=\"compare(\'{0}\')\">Compare</button></th><th>{0}</th><th>${1}/{4}</th><th>{2}</th><th>{3}</th></tr>").supplant([full[i].item, full[i].price, full[i].location, full[i].date, full[i].unit]);
     }
     string = string + "</table>";
     console.log(string);
@@ -65,7 +65,7 @@ check_item = function() {
   console.log("Number of database indices- " + len);
   for (var i = 0; i < len; i++) {
       console.log(full[i]);
-      string += ("<option value='{id}'>{0}</option>").supplant([full[i].item]);
+      string += ("<option value='{0}'>{0}</option>").supplant([full[i].item]);
   }
   string += "</select>"
   console.log(string);
@@ -80,7 +80,7 @@ check_location = function() {
   console.log("Number of database indices- " + len);
   for (var i = 0; i < len; i++) {
       console.log(full[i]);
-      string += ("<option value='{id}'>{0}</option>").supplant([full[i].name]);
+      string += ("<option value='{0}'>{0}</option>").supplant([full[i].name]);
   }
   string += "</select>"
   console.log(string);
@@ -144,7 +144,7 @@ new_item = function() {
       item: name
   });
   lib.commit();
-  check_items();
+  check_item();
 }
 
 new_location = function() {
@@ -153,5 +153,5 @@ new_location = function() {
       name: name_v
   });
   lib.commit();
-  check_locations();
+  check_location();
 }
