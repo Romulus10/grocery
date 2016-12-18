@@ -19,19 +19,23 @@
         <h2>New Entry</h2>
         <form>
             Item<br>
-            <input type="text" id="item"><br>
+            <div id='item'>
+            </div>
+            <br>
             Number<br>
-            <input type="text" id="number">
-            <select>
+            <input type="number" id="number">
+            <select id='unit'>
               <option value="ct">ct</option>
               <option value="lbs">lbs</option>
               <option value="oz">oz</option>
             </select>
             <br>
             Price<br>
-            <input type="text" id="price"><br>
+            <input type="number" id="price"><br>
             Store<br>
-            <input type="text" id="location"><br>
+            <div id="location">
+            </div>
+            <br>
             Date<br>
             <input type="date" id="date"><br>
             <input type="button" id="send" value="Submit" onclick="update_screen()">
@@ -42,8 +46,8 @@
             $0.00
           </div>
           <button onclick='clear_total()'>Clear</button>
-          <button>New Item</button>
-          <button>New Store</button>
+          <button onclick='new_item()'>New Item</button>
+          <button onclick='new_location()'>New Store</button>
         </div>
     </div>
     <h2>Groceries</h2>

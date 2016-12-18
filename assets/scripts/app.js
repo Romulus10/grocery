@@ -3,8 +3,6 @@
 
 var total; // I'm sorry
 var lib; // I'm so sorry
-var lib1; // Even more
-var lib2; // ...no...why
 
 
 String.prototype.supplant = function (o) {
@@ -20,21 +18,15 @@ String.prototype.supplant = function (o) {
 onload = function () {
     total = 0;
     lib = new localStorageDB("groceries", localStorage);
-    lib1 = new localStorageDB("items", localStorage);
-    lib2 = new localStorageDB("locations", localStorage);
     if (lib.isNew()) {
         lib.createTable("groceries", ["item", "price", "unit", "location", "date"]);
+        lib.createTable("items", ["item"]);
+        lib.createTable("locations", ["name"]);
         lib.commit();
     }
-    if (lib1.isNew()) {
-        lib1.createTable("items", ["item"]);
-        lib1.commit();
-    }
-    if (lib2.isNew()) {
-        lib2.createTable("locations", ["name"]);
-        lib2.commit();
-    }
     check_database();
+    check_items();
+    check_locations();
 }
 
 new_block = function (item_v, number_v, price_v, unit_v, location_v, date_v) {
@@ -63,6 +55,36 @@ check_database = function () {
     string = string + "</table>";
     console.log(string);
     document.getElementById("list").innerHTML = string;
+}
+
+check_items = function() {
+  var full = lib.queryAll("items");
+  console.log(full);
+  var len = full.length;
+  var string = "<select>"
+  console.log("Number of database indices- " + len);
+  for (var i = 0; i < len; i++) {
+      console.log(full[i]);
+      string += ("<option value='{id}'>{0}</option>").supplant([full[i].item]);
+  }
+  string += "</select>"
+  console.log(string);
+  document.getElementById("item").innerHTML = string;
+}
+
+check_locations = function() {
+  var full = lib.queryAll("locations");
+  console.log(full);
+  var len = full.length;
+  var string = "<select>"
+  console.log("Number of database indices- " + len);
+  for (var i = 0; i < len; i++) {
+      console.log(full[i]);
+      string += ("<option value='{id}'>{0}</option>").supplant([full[i].name]);
+  }
+  string += "</select>"
+  console.log(string);
+  document.getElementById("location").innerHTML = string;
 }
 
 update_screen = function () {
@@ -112,4 +134,22 @@ compare = function (name_v) {
 clear_total = function(){
   document.getElementById('display').innerHTML = '$0.00';
   total = 0;
+}
+
+new_item = function() {
+  var name = prompt("Item Name");
+  lib.insert("items", {
+      item: name
+  });
+  lib.commit();
+  check_items();
+}
+
+new_location = function() {
+  var name_v = prompt("Store Name");
+  lib.insert("locations", {
+      name: name_v
+  });
+  lib.commit();
+  check_locations();
 }
