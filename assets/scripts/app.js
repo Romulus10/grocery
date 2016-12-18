@@ -27,17 +27,6 @@ onload = function () {
     check_database();
     check_item();
     check_location();
-    var cook = document.cookie;
-    console.log(cook);
-    if (cook != ("version=" + version)) {
-        var appCache = window.applicationCache;
-        console.log(appCache.status);
-        appCache.update();
-        if (appCache.status == window.applicationCache.UPDATEREADY) {
-            appCache.swapCache();
-        }
-        document.cookie = "version=" + version;
-    }
 }
 
 new_block = function (item_v, number_v, price_v, unit_v, location_v, date_v) {
