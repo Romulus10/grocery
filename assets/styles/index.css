@@ -16,3 +16,6 @@ th {
     font-size: 8px;
     text-align: left;
 }
+select {
+	-webkit-appearance: menulist;
+}
