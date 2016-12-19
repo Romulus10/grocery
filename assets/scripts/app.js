@@ -144,7 +144,7 @@ new_item = function() {
       item: name
   });
   lib.commit();
-  update_screen();
+  check_item();
 }
 
 new_location = function() {
@@ -153,5 +153,5 @@ new_location = function() {
       name: name_v
   });
   lib.commit();
-  update_screen();
+  check_location();
 }
