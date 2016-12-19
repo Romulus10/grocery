@@ -104,7 +104,7 @@ get_form = function () {
     var price = form_m.elements[3].value;
     var location = form_m.elements[4].value;
     var date = form_m.elements[5].value;
-    total += parseInt(price);
+    total += parseFloat(price);
     document.getElementById('display').innerHTML = '$' + total;
     var return_val = Array(item, number, price, type, location, date);
     console.log(return_val);
