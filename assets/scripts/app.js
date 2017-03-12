@@ -15,6 +15,27 @@ String.prototype.supplant = function (o) {
     );
 };
 
+database_sort = function(array) {
+    var tmp;
+    var swapped = false;
+    var n = array.length;
+    while (swapped) {
+        console.log("Sorting...");
+        swapped = false;
+        for (var i = 0; i < n-1; i++) {
+            console.log("i = " + i + "/" + n-1);
+            if (array[i-1].item > array[i].item) {
+                console.log("Swapping.");
+                tmp = array[i-1];
+                array[i-1] = array[i];
+                array[i] = tmp;
+                swapped = true;
+            }
+        }
+    }
+    return array;
+}
+
 onload = function () {
     total = 0;
     lib = new localStorageDB("groceries", localStorage);
@@ -58,33 +79,39 @@ check_database = function () {
 }
 
 check_item = function() {
-  var full = lib.queryAll("items");
-  console.log(full);
-  var len = full.length;
-  var string = "<select>"
-  console.log("Number of database indices- " + len);
-  for (var i = 0; i < len; i++) {
-      console.log(full[i]);
-      string += ("<option value='{0}'>{0}</option>").supplant([full[i].item]);
-  }
-  string += "</select>"
-  console.log(string);
-  document.getElementById("item").innerHTML = string;
+    var full = lib.queryAll("items");
+    console.log(full);
+    var len = full.length;
+    var check = full;
+    full = database_sort(full);
+    console.log(full);
+    if (full == full) {
+        console.log("Test failed.");
+    }
+    var string = "<select>"
+    console.log("Number of database indices- " + len);
+    for (var i = 0; i < len; i++) {
+        console.log(full[i]);
+        string += ("<option value='{0}'>{0}</option>").supplant([full[i].item]);
+    }
+    string += "</select>"
+    console.log(string);
+    document.getElementById("item").innerHTML = string;
 }
 
 check_location = function() {
-  var full = lib.queryAll("locations");
-  console.log(full);
-  var len = full.length;
-  var string = "<select>"
-  console.log("Number of database indices- " + len);
-  for (var i = 0; i < len; i++) {
-      console.log(full[i]);
-      string += ("<option value='{0}'>{0}</option>").supplant([full[i].name]);
-  }
-  string += "</select>"
-  console.log(string);
-  document.getElementById("location").innerHTML = string;
+    var full = lib.queryAll("locations");
+    console.log(full);
+    var len = full.length;
+    var string = "<select>"
+    console.log("Number of database indices- " + len);
+    for (var i = 0; i < len; i++) {
+        console.log(full[i]);
+        string += ("<option value='{0}'>{0}</option>").supplant([full[i].name]);
+    }
+    string += "</select>"
+    console.log(string);
+    document.getElementById("location").innerHTML = string;
 }
 
 update_screen = function () {
@@ -97,21 +124,31 @@ update_screen = function () {
 }
 
 get_form = function () {
+    var good = true;
     var form_m = document.forms[0];
-    var item = form_m.elements[0].value;
-    var number = form_m.elements[1].value;
-    var type = form_m.elements[2].value;
-    var price = form_m.elements[3].value;
-    var location = form_m.elements[4].value;
-    var date = form_m.elements[5].value;
-    total += parseFloat(price);
-    document.getElementById('display').innerHTML = '$' + total;
-    var return_val = Array(item, number, price, type, location, date);
-    console.log(return_val);
     for (var x = 0; x < 5; x++) {
-        form_m.elements[x].value = "";
+        if (form_m.elements[x].value = "") {
+            good = false;
+        }
     }
-    return return_val;
+    if (good) {
+        var item = form_m.elements[0].value;
+        var number = form_m.elements[1].value;
+        var type = form_m.elements[2].value;
+        var price = form_m.elements[3].value;
+        var location = form_m.elements[4].value;
+        var date = form_m.elements[5].value;
+        total += parseFloat(price);
+        document.getElementById('display').innerHTML = '$' + total;
+        var return_val = Array(item, number, price, type, location, date);
+        console.log(return_val);
+        for (var x = 0; x < 5; x++) {
+            form_m.elements[x].value = "";
+        }
+        return return_val;
+    } else {
+        alert("Be sure to fill out the entire form.");
+    }
 }
 
 compare = function (name_v) {
@@ -134,24 +171,24 @@ compare = function (name_v) {
 }
 
 clear_total = function(){
-  document.getElementById('display').innerHTML = '$0.00';
-  total = 0;
+    document.getElementById('display').innerHTML = '$0.00';
+    total = 0;
 }
 
 new_item = function() {
-  var name = prompt("Item Name");
-  lib.insert("items", {
-      item: name
-  });
-  lib.commit();
-  check_item();
+    var name = prompt("Item Name");
+    lib.insert("items", {
+        item: name
+    });
+    lib.commit();
+    check_item();
 }
 
 new_location = function() {
-  var name_v = prompt("Store Name");
-  lib.insert("locations", {
-      name: name_v
-  });
-  lib.commit();
-  check_location();
+    var name_v = prompt("Store Name");
+    lib.insert("locations", {
+        name: name_v
+    });
+    lib.commit();
+    check_location();
 }
