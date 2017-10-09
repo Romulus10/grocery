@@ -37,9 +37,11 @@ database_sort = function(array) {
 }
 
 onload = function () {
+    console.log("Checking database.");
     total = 0;
     lib = new localStorageDB("groceries", localStorage);
     if (lib.isNew()) {
+	console.log("Setting up database.");
         lib.createTable("groceries", ["item", "price", "unit", "location", "date"]);
         lib.createTable("items", ["item"]);
         lib.createTable("locations", ["name"]);
@@ -127,7 +129,7 @@ get_form = function () {
     var good = true;
     var form_m = document.forms[0];
     for (var x = 0; x < 5; x++) {
-        if (form_m.elements[x].value = "") {
+        if (form_m.elements[x].value == "") {
             good = false;
         }
     }
